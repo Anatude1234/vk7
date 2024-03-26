@@ -11,11 +11,8 @@ const Home = ({ navigation }) => {
     <View style={[Styles.container, isDarkMode && Styles.darkBackground]}>
       <MainAppbar title="Home" navigation={navigation} />
       <View style={Styles.content}>
-        <Text style={Styles.text}>Home Screen</Text>
-        <Button
-          title="Go to Settings"
-          onPress={() => navigation.navigate('Settings')}
-        />
+  
+   
       </View>
     </View>
   );
