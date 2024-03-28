@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { Appbar, IconButton } from 'react-native-paper';
-import ThemeSwitchButton from '../components/ThemeSwitchButton'; // Import ThemeSwitchButton
+import ThemeSwitchButton from '../components/ThemeSwitchButton'; 
 import Styles from '../Styles';
 
 const Settings = () => {
