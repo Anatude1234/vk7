@@ -1,16 +1,22 @@
 import React from 'react';
 import { View, Text } from 'react-native';
-import MainAppbar from '../components/MainAppbar';
-import ThemeSwitchButton from '../components/ThemeSwitchButton';
+import { useNavigation } from '@react-navigation/native';
+import { Appbar, IconButton } from 'react-native-paper';
+import ThemeSwitchButton from '../components/ThemeSwitchButton'; // Import ThemeSwitchButton
 import Styles from '../Styles';
 
-const Settings = ({ navigation }) => {
+const Settings = () => {
+  const navigation = useNavigation();
+
   return (
     <View style={[Styles.container, Styles.lightBackground]}>
-      <MainAppbar title="Settings" navigation={navigation} />
+      <Appbar.Header>
+        <Appbar.BackAction onPress={() => navigation.goBack()} />
+        <Appbar.Content title="Settings" />
+        <ThemeSwitchButton />
+      </Appbar.Header>
       <View style={Styles.content}>
         <Text style={Styles.text}>Settings Screen</Text>
-        <ThemeSwitchButton />
       </View>
     </View>
   );

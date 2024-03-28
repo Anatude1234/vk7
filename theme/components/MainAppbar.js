@@ -1,17 +1,39 @@
 import React from 'react';
-import { Appbar } from 'react-native-paper';
-import { Button } from 'react-native-paper';
-import useTheme from '../context/useTheme';
+import { Appbar, IconButton } from 'react-native-paper';
+import { useNavigation } from '@react-navigation/native';
+import ThemeSwitchButton from './ThemeSwitchButton'; 
 
-const MainAppbar = ({ title, navigation }) => {
-  const { toggleDarkMode } = useTheme();
+const MainAppbar = ({ title, showBackAction, showSettingsButton }) => {
+  const navigation = useNavigation();
+  
+  const handleBackAction = () => {
+    if (showBackAction) {
+      navigation.goBack();
+    } else {
+      navigation.navigate('Home');
+    }
+  };
+  
+  const renderSettingsButton = () => {
+    if (showSettingsButton) {
+      return <IconButton icon="cog" onPress={() => navigation.navigate('Settings')} />;
+    }
+    return null;
+  };
+  
+  const renderThemeSwitchButton = () => {
+    if (title === 'Settings') {
+      return <ThemeSwitchButton onPress={() => {}} />;
+    }
+    return null;
+  };
+  
   return (
     <Appbar.Header>
-      <Appbar.BackAction onPress={() => navigation.goBack()} />
+      {showBackAction && <Appbar.BackAction onPress={handleBackAction} />}
       <Appbar.Content title={title} />
-      <Button mode="contained" onPress={toggleDarkMode}>
-      Toggle Theme
-    </Button>
+      {renderSettingsButton()}
+      {renderThemeSwitchButton()}
     </Appbar.Header>
   );
 };
